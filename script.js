@@ -144,8 +144,9 @@ function renderTreeNode(nodeKey, nodeData, level, parentContainer) {
   nodeHeader.className = 'flex items-start py-1 px-2 cursor-pointer rounded-lg transition-all duration-200 hover:bg-indigo-100';
   
   // Создаем содержимое узла
-  if (hasChildren) {
-    const toggleButton = document.createElement('div');
+    let toggleButton;
+    if (hasChildren) {
+      toggleButton = document.createElement('div');
     toggleButton.className = 'text-indigo-400 bg-transparent p-1 mr-2 rounded-md transition-colors duration-300';
     toggleButton.innerHTML = '<i data-lucide="chevron-right" class="w-4 h-4"></i>';
     nodeHeader.appendChild(toggleButton);
