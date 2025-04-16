@@ -17,19 +17,6 @@
           extend: {
             fontFamily: {
               sans: ['Outfit', 'sans-serif']
-            },
-            animation: {
-              'gradient': 'gradient 8s ease infinite',
-            },
-            keyframes: {
-              gradient: {
-                '0%, 100%': {
-                  'background-position': '0% 50%'
-                },
-                '50%': {
-                  'background-position': '100% 50%'
-                },
-              }
             }
           }
         }
@@ -44,20 +31,6 @@
       
       #root {
         min-height: 100vh;
-      }
-
-      .animated-bg {
-        background-size: 200% 200%;
-        animation: gradient 15s ease infinite;
-      }
-
-      /* Микроанимации */
-      .scale-on-hover {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      
-      .scale-on-hover:hover {
-        transform: scale(1.02);
       }
 
       /* Элегантный скроллбар */
@@ -82,7 +55,7 @@
   </head>
   <body class="bg-slate-50 text-slate-800">
     <noscript>Для работы этого приложения необходим JavaScript.</noscript>
-    <div id="root" class="min-h-screen py-10 px-4 animated-bg bg-gradient-to-br from-sky-50 via-white to-emerald-50">
+    <div id="root" class="min-h-screen py-10 px-4 bg-slate-50">
       <div id="app"></div>
       <footer class="mt-10 pt-6 border-t border-sky-200 max-w-5xl mx-auto">
         <div class="flex justify-center text-sm text-sky-600">
