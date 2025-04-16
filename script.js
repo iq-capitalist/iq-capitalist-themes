@@ -57,21 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Инициализируем иконки Lucide
       lucide.createIcons();
-                <p class="text-red-500">${error.message}</p>
-              </div>
-            </div>
-          </div>
-          <div class="bg-violet-50 p-6 rounded-xl text-violet-700 border border-violet-100">
-            <p class="flex items-center">
-              <i data-lucide="info" class="mr-2 text-violet-500"></i>
-              Проверьте, что файл themes.txt доступен в вашем репозитории и имеет правильный формат.
-            </p>
-          </div>
-        </div>
-      `;
-      
-      // Инициализируем иконки Lucide
-      lucide.createIcons();
     });
 });
 
