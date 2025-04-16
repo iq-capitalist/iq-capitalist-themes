@@ -8,7 +8,7 @@
 
 ## Демо
 
-Живую версию приложения можно увидеть здесь: [https://iq-capitalist.github.io/iq-capitalist-themes](https://iq-capitalist.github.io/iq-capitalist-themes)
+Живую версию приложения можно увидеть здесь: [https://iq-capitalist.github.io/iqc-themes](https://iq-capitalist.github.io/iqc-themes)
 
 ## Функциональность
 
@@ -38,7 +38,7 @@ iq-capitalist-themes/
 
 1. Склонируйте репозиторий:
    ```
-   git clone https://github.com/yourusername/iq-capitalist-themes.git
+   git clone https://github.com/iq-capitalist/iqc-themes.git
    ```
 
 2. Отредактируйте следующие поля в файлах:
