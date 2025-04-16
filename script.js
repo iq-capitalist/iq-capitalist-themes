@@ -107,7 +107,7 @@ function renderThemeTree(themes, container) {
         <span class="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 mb-2 md:mb-0 md:mr-3 bg-sky-600 rounded-lg text-white">
           <i data-lucide="book-open" class="w-5 h-5"></i>
         </span>
-        <span>Темы вопросов IQ Capitalist</span>
+        <span>Темы вопросов IQ&nbsp;Capitalist</span>
       </h1>
       <div class="bg-slate-50 p-3 md:p-6 rounded-lg md:rounded-xl border border-slate-200">
         <div id="theme-tree" class="space-y-1"></div>
@@ -125,6 +125,11 @@ function renderThemeTree(themes, container) {
     const nodeElement = createTreeNode(key, data, 1);
     themeTreeContainer.appendChild(nodeElement);
   });
+  
+  // Повторно инициализируем иконки Lucide после создания всех узлов
+  setTimeout(() => {
+    lucide.createIcons();
+  }, 100);
 }
 
 // Создание узла дерева
@@ -169,7 +174,7 @@ function createTreeNode(nodeKey, nodeData, level) {
   }
   
   const titleElement = document.createElement('div');
-  titleElement.className = `${getLevelStyle()} truncate`;
+  titleElement.className = getLevelStyle();
   
   if (level > 1) {
     titleElement.innerHTML = `<span class="text-sky-600 font-normal mr-1">${nodeKey}.</span>${nodeData.text}`;
