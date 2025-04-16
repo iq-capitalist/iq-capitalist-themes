@@ -112,12 +112,13 @@ function renderThemeTree(themes, container) {
   
   // Отрисовка корневых узлов
   Object.entries(themes).forEach(([key, data]) => {
-    renderTreeNode(key, data, 1, themeTreeContainer);
+    const nodeElement = createTreeNode(key, data, 1);
+    themeTreeContainer.appendChild(nodeElement);
   });
 }
 
-// Отрисовка узла дерева
-function renderTreeNode(nodeKey, nodeData, level, parentContainer) {
+// Создание узла дерева
+function createTreeNode(nodeKey, nodeData, level) {
   const hasChildren = nodeData.children && Object.keys(nodeData.children).length > 0;
   
   // Определение стилей на основе уровня
@@ -143,10 +144,11 @@ function renderTreeNode(nodeKey, nodeData, level, parentContainer) {
   const nodeHeader = document.createElement('div');
   nodeHeader.className = 'flex items-start py-1 px-2 cursor-pointer rounded-lg transition-all duration-200 hover:bg-indigo-100';
   
+  let toggleButton;
+  
   // Создаем содержимое узла
-    let toggleButton;
-    if (hasChildren) {
-      toggleButton = document.createElement('div');
+  if (hasChildren) {
+    toggleButton = document.createElement('div');
     toggleButton.className = 'text-indigo-400 bg-transparent p-1 mr-2 rounded-md transition-colors duration-300';
     toggleButton.innerHTML = '<i data-lucide="chevron-right" class="w-4 h-4"></i>';
     nodeHeader.appendChild(toggleButton);
@@ -169,18 +171,30 @@ function renderTreeNode(nodeKey, nodeData, level, parentContainer) {
   nodeElement.appendChild(nodeHeader);
   
   // Создаем контейнер для дочерних элементов (изначально скрыт)
+  const childrenContainer = document.createElement('div');
+  childrenContainer.className = 'ml-4 border-l-2 border-indigo-200 pl-2 transition-all duration-300 hidden';
+  nodeElement.appendChild(childrenContainer);
+  
+  // Добавляем эффект при наведении
+  nodeElement.addEventListener('mouseenter', () => {
+    nodeHeader.classList.add('bg-indigo-50', 'rounded-lg');
+  });
+  
+  nodeElement.addEventListener('mouseleave', () => {
+    nodeHeader.classList.remove('bg-indigo-50', 'rounded-lg');
+  });
+  
+  // Если есть дочерние элементы, добавляем обработчик клика
   if (hasChildren) {
-    const childrenContainer = document.createElement('div');
-    childrenContainer.className = 'ml-4 border-l-2 border-indigo-200 pl-2 transition-all duration-300 hidden';
-    childrenContainer.dataset.nodeChildren = 'true';
-    nodeElement.appendChild(childrenContainer);
-    
-    // Добавляем обработчик клика для переключения видимости
     nodeHeader.addEventListener('click', () => {
-      const isExpanded = childrenContainer.classList.contains('hidden');
+      const isExpanded = !childrenContainer.classList.contains('hidden');
       
       // Переключаем видимость дочерних элементов
       if (isExpanded) {
+        childrenContainer.classList.add('hidden');
+        toggleButton.className = 'text-indigo-400 bg-transparent p-1 mr-2 rounded-md transition-colors duration-300';
+        toggleButton.innerHTML = '<i data-lucide="chevron-right" class="w-4 h-4"></i>';
+      } else {
         childrenContainer.classList.remove('hidden');
         toggleButton.className = 'text-indigo-600 bg-indigo-100 p-1 mr-2 rounded-md transition-colors duration-300';
         toggleButton.innerHTML = '<i data-lucide="chevron-down" class="w-4 h-4"></i>';
@@ -188,13 +202,10 @@ function renderTreeNode(nodeKey, nodeData, level, parentContainer) {
         // Отрисовываем дочерние узлы, если они еще не отрисованы
         if (childrenContainer.children.length === 0) {
           Object.entries(nodeData.children).forEach(([childKey, childData]) => {
-            renderTreeNode(childKey, childData, level + 1, childrenContainer);
+            const childNode = createTreeNode(childKey, childData, level + 1);
+            childrenContainer.appendChild(childNode);
           });
         }
-      } else {
-        childrenContainer.classList.add('hidden');
-        toggleButton.className = 'text-indigo-400 bg-transparent p-1 mr-2 rounded-md transition-colors duration-300';
-        toggleButton.innerHTML = '<i data-lucide="chevron-right" class="w-4 h-4"></i>';
       }
       
       // Обновляем иконки Lucide
@@ -206,15 +217,5 @@ function renderTreeNode(nodeKey, nodeData, level, parentContainer) {
     });
   }
   
-  // Добавляем эффект при наведении
-  nodeElement.addEventListener('mouseenter', () => {
-    nodeHeader.classList.add('bg-indigo-50', 'rounded-lg');
-  });
-  
-  nodeElement.addEventListener('mouseleave', () => {
-    nodeHeader.classList.remove('bg-indigo-50', 'rounded-lg');
-  });
-  
-  // Добавляем узел в родительский контейнер
-  parentContainer.appendChild(nodeElement);
+  return nodeElement;
 }
