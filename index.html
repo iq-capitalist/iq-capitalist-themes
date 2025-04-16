@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#6366f1" />
+    <meta name="description" content="Темы вопросов игры IQ Capitalist" />
+    <title>IQ Capitalist - Темы вопросов</title>
+    
+    <!-- Подключаем Google Fonts и Tailwind CSS через CDN -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {}
+        }
+      }
+    </script>
+    <style>
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      #root {
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>Для работы этого приложения необходим JavaScript.</noscript>
+    <div id="root" class="min-h-screen bg-gradient-to-br from-indigo-100 to-purple-100 py-10 px-4">
+      <div id="app"></div>
+      <footer class="text-center mt-8 text-sm text-gray-500">
+        <p>© 2025 IQ Capitalist | <a href="https://github.com/yourusername/iq-capitalist-themes" class="text-indigo-500 hover:text-indigo-700">GitHub Repository</a></p>
+      </footer>
+    </div>
+
+    <!-- Подключаем Lucide Icons через CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Подключаем скрипт приложения -->
+    <script src="script.js"></script>
+  </body>
+</html>
